@@ -24,7 +24,7 @@ After extracting the files,
 * create database
     You will need to create a database a new postgress database by typing the following command to access postgress
         $ psql
-    Then run below query to create a new database named bengallery
+    Then run below query to create a new database named instagramphotos
         
 * create Database migrations
     make migrations on postgres using django
