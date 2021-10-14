@@ -1,5 +1,5 @@
-## bengallery
-Is an application that allows users to  view different photos, click on a single photo and view its details, search for different categories of photos, copy link of the photo and also view based on location.
+## instagramphotosapp
+Is an application that allows users to  users to sign in, upload pictures see profile, follow other users like and commment on photos.
 ## Author
 Bernard Opiyo
 
@@ -7,7 +7,7 @@ Bernard Opiyo
 Use the following command to install all the requirement applications. pip freeze -r requirements.txt
 
 ## setup
-* Run git clone https://github.com/Bernard2030/bengallery or download the zip file from github.
+* Run git clone https://github.com/Bernard2030/instagramphotoapp or download the zip file from github.
 
 After extracting the files,
 
@@ -36,16 +36,15 @@ After extracting the files,
 * Python3.8
 * Django  
 * HTML5  
-* Bootstrap4
+* Bootstrap5
 
 user story
 
-* View different photos that interest me.
-* Click on a single photo to expand it and also view the details of the photo. The photo details must * appear on a modal within the same route as the main page.
-* Search for different categories of photos. (ie. Travel, Food)
-* Copy a link to the photo to share with my friends.
-* View photos based on the location they were taken.
-
+* Sign in to the application to start using.
+* Upload my pictures to the application.
+* See my profile with all my pictures.
+* Follow other users and see their pictures on my timeline.
+* Like a picture and leave a comment on it.
 
 ## pictorial Discription
 <img src="image/image1.png" alt="landing"/>
