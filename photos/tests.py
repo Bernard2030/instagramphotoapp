@@ -16,3 +16,18 @@ class ProfileTestClass(TestCase):
         self.bernard.save_profile()
         profiles = Profile.objects.all()
         self.asserttrue(len(profiles) > 0)
+
+class PostTestClass(TestCase): 
+    def setUp(self):
+        #creating a new post and saving it
+        self.bernard = Post(name = "bernard")
+        self.bernard.save_post()
+
+        #creating a new image and saving it
+        self.new_Post = Post(name = 'squid')   
+        self.new_Post.save() 
+
+    def tearDown(self):
+        Profile.objects.all().delete()
+        Post.objects.all().delete()
+            
