@@ -1,4 +1,4 @@
-<div class="container" style="">
+<div class="container" >
     <div class="card">
         <div class="row">
             <!-- <div class="col-md-8 ml-3"
@@ -10,7 +10,7 @@
                      alt="{{image.user.user.username}}" width="200" height="200">
                 <a href="#" class="mt-4 user">user.user.username </a>
 
-                <hr style="">
+                <hr >
                 {% for comment in image.comments.all %}
                 <div class="comment">
                     <div class="ml-2"><strong>{{ comment.user.user.username }}</strong> <span class="text-secondary">{{ comment.comment }}</span>
