@@ -11,6 +11,9 @@ from photos.models import Post
 def welcome(request):
     return render(request, 'welcome.html')
 
+
+    
+
 def search_results(request):
 
     if 'article' in request.GET and request.GET["article"]:
