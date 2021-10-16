@@ -8,7 +8,7 @@ import photos
 
 # Create your models here.
 class Profile(models.Model):
-    profile_image =models.ImageField(upload_to='profile_image/', default='default.png')  
+    profile_image =models.ImageField(upload_to='profile_image', default='default.png')  
     bio = models.TextField(max_length=500, default='My Bio', blank=True) 
     name = models.CharField(blank=True, max_length=120)
     user= models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
@@ -35,18 +35,30 @@ class Profile(models.Model):
 
     @classmethod
     def search_profile(cls, name):
-        return cls.objects.filter(user__username__icontains=name).all()                  
+        return cls.objects.filter(user__username__icontains=name).all()  
+
+
+class Comments(models.Model):
+    comment = models.TextField()
+    images = models.ImageField(upload_to='images') 
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='comments') 
+
+    def __str__(self):
+        return f'{self.user.name} Comment'
+
+    class Meta:
+        ordering = ["-pk"]                           
 
           
 
 
 class Post(models.Model):
-    images = models.ImageField(upload_to='images/')
+    images = models.ImageField(upload_to='images')
     name =models.CharField(max_length=60, blank=True)
     caption = models.CharField(max_length=250, blank=True)
     likes = models.ManyToManyField(User, related_name='likes', blank=True)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='images')
-    comments = models.CharField(max_length=200)
+    comments = models.ForeignKey(Comments,on_delete=models.CASCADE, max_length=200, related_name='comments')
 
     @classmethod
     def search_by_title(cls,search_term):
@@ -69,19 +81,17 @@ class Post(models.Model):
         return self.like.count()
 
     def __str__(self):
-        return f'{self.user.name}Post'                    
+        return f'{self.user.name}Post'  
+
+class Follow(models.Model):
+    follower = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='following')
+    followed =models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='follweers')  
+
+    
+    def __str__(self):
+        return f'{self.follower}Follow'                       
 
 
  
-
-# class Comment(models.Model):
-#     comment = models.TextField()
-#     images = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments') 
-#     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='comments') 
-
-#     def __str__(self):
-#         return f'{self.user.name} Comment'
-
-#     class Meta:
-#         ordering = ["-pk"]     
+  
 
