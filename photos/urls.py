@@ -7,6 +7,7 @@ urlpatterns=[
     url('^$',views.welcome,name = 'welcome'),
     url(r'^search/', views.search_results, name='search_results'),
     # url(r'^post/(\d+)',views.article,name ='post'),
+    
 ]
 
 if settings.DEBUG:
