@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
+import photos
+
 
 # Create your models here.
 class Profile(models.Model):
@@ -45,6 +47,11 @@ class Post(models.Model):
     likes = models.ManyToManyField(User, related_name='likes', blank=True)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='images')
     comments = models.CharField(max_length=200)
+
+    @classmethod
+    def search_by_title(cls,search_term):
+        news = cls.objects.filter(title__icontains=search_term)
+        return photos
 
     class Meta:
         ordering = ["-pk"]
