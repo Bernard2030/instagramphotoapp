@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% load bootstrap4 %} {% load static %} {% block content %}
+<div class="container">
+    <div class="row">
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+      <div class="card h-100">
+          <h4 style="text-align: center;" class="card-title ">{{post.name}}</h4>
+        <img style="text-align: center;" width="500px" height="450px" src="{{post.image.url}}" class="card-img-top" alt="{{post.name}}">
+        <div class="card-body">
+          <h5 class="card-title">{{post.caption}}</h5>
+          <p class="card-text"><b>Posted by:</b> {{post.user}}</p>
+          <div class="react">
+            <a href=""><img src="https://img.icons8.com/ios-glyphs/30/000000/hearts.png" /></a>
+            <a href="{%url 'comment' post.id%}"><img data-toggle="collapse" src="https://img.icons8.com/metro/26/000000/comments.png" /></a>
+            </a>
+          </div>
+          <div class="react">
+            <p><span style="font-weight: bold;">{{post.likes}}</span> Likes</p> 
+          </div>
+          <form action="{% url 'timeline' post.pk %}" method="post">
+            {% csrf_token %}
+
+        </form>
+        <h3>{{post.user}}</h3> {% for comment in comments%}
+                <p>"{{comment.text}}" </p>{%empty%} {%endfor%}
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{%%}
