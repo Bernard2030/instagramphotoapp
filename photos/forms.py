@@ -1,40 +1,30 @@
-from typing_extensions import Required
 from django import forms
-from django.contrib.auth.forms import UserCreationForm 
+from .models import Post,Profile,Comments
 from django.contrib.auth.models import User
-from django.forms import fields
-from .models import Profile,Post,Comments
+from django.contrib.auth.forms import UserCreationForm
 
-class signUpForm(UserCreationForm):
-    email = forms.EmailField(max_length=200, help_text='Required. Input a valid email.')
-    class Meta:
-        model = User
-        fields = ('username', 'email', 'password1', 'password2')
-
-class UpdateUserForm(forms.ModelForm):
-    email =forms.EmailField(max_length=200, help_text='. Input valid email address.')  
+class SignUpForm(UserCreationForm):
+    email = forms.EmailField(help_text='Enter Email!')
 
     class Meta:
         model = User
-        fields = ('usename', 'email') 
+        fields = ('username','email','password1','password2') 
 
-class UpdateUserProfileForm(forms.ModelForm):
+
+class EditProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['name', 'profile+image', 'bio']
+        fields = ('profile_image','bio','username')
 
-class PostForm(forms.modelform):
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comments
+        exclude = ['user','pic_id']
+
+
+class NewPostForm(forms.ModelForm):
     class Meta:
         model = Post
-        friends = ('image', 'caption')
+        exclude = ['user','likes']
 
-class CommentsForm(forms.ModelForm):
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['comment'].widget = forms.TextInput()
-        self.fields['comment'].widget.attrs['placeholder'] = 'Add your comment ...'
-
-        class Meta:
-            model = Comments
-            fields = ('comments')                
+     

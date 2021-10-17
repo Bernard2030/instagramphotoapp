@@ -1,0 +1,19 @@
+{% extends 'base.html'%} {% load bootstrap4 %}
+{% block content %}
+<div class="container">
+    
+    {% for post in posts %}
+    <div class="row">
+        <div class="card-body">
+            <img src=".." alt="">
+            <h3>{{pic.user}}</h3>
+        </div>
+        <p>user{{post.name}}</p>
+        <p>name{{post.caption}}</p>
+        <img src="{{post.image.url}}" alt="">
+    </div>
+</div>
+{% endfor %}
+
+
+{% endblock %}
