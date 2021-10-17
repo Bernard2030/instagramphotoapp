@@ -1,0 +1,23 @@
+{% extends 'base.html %} {% load bootstrap4 %}
+{% block content %}
+
+<div class="cotainer">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card">
+                <h5 class="card-header"><h3><b><u>update your profile</u></b></h3></h5>
+                <div class="card-body">
+                  <form action="{% url 'newpost %}" method="post" enctype="multipart/form-data">
+                    {% csrf_tokeb %} {% bootstrap_form form %}
+                    <button type="submit" class="btn btn-outline-danger">uploads</button>
+
+                  </form>
+                </div>
+              </div>
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+{% endblock %}
