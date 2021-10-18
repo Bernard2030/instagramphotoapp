@@ -22,20 +22,7 @@ def index(request):
     return render(request, 'index.html',{'posts':posts})
 
 
-# def signUp(request):    
-#     if request.method=='POST':
-#         form = SignUpForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             name=form.cleaned_data['username']
-#             email = form.cleaned_data['email']
-#             # send=welcome_email(name,email)
-#             HttpResponseRedirect('timeline')
 
-#     else:
-#         form = SignUpForm()
-
-#     return render(request,'registration/registration_form.html',{'form':form})
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
@@ -65,7 +52,7 @@ def new_post(request):
             post.user = request.user
             post.save()
 
-            return redirect('welcome')
+            return redirect('timeline')
 
     else:
         form =NewPostForm()
@@ -79,13 +66,14 @@ def comment(request,id):
 
     id = id
     if request.method=='POST':
+        form = CommentForm(request.POST)
         if form.is_valid():
             comments = form.save(commit=False)
             comments.user = request.user
             image = Post.objects.get(id = id)
             comment.pic_id = image
             comment.save()
-            return redirect('welcome')
+            return redirect('timeline')
 
 
         else:
@@ -112,7 +100,7 @@ def single_pic(request,id):
 def logout_request(request):
 
     logout(request)
-    return redirect('welcome')
+    return redirect('timeline')
 
 
 class PostDetailview(DetailView):
@@ -120,18 +108,18 @@ class PostDetailview(DetailView):
     templete_name = 'single_pic.html'
 
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(PostDetailView, self).get_context_data(*args, **kwargs)
-        stuff = get_object_or_404(Post, id=self.kwargs['pk'])
-        total_likes = stuff.total_likes()
-        context ["total_likes"]=total_likes
-        return context
+    # def get_context_data(self, *args, **kwargs):
+    #     context = super(PostDetailView, self).get_context_data(*args, **kwargs)
+    #     stuff = get_object_or_404(Post, id=self.kwargs['pk'])
+    #     total_likes = stuff.total_likes()
+    #     context ["total_likes"]=total_likes
+    #     return context
 
 
-    def like_image(request, pk):
-        post = get_object_or_404(Post, id=request.POST.get('post_id'))
-        post.likes.add(request.user)
-        return HttpResponseRedirect(reverse('singlepic', args=[str(pk)]))
+    # def like_image(request, pk):
+    #     post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    #     post.likes.add(request.user)
+    #     return HttpResponseRedirect(reverse('singlepic', args=[str(pk)]))
 
 
 
@@ -148,18 +136,18 @@ def add_like(request,post_id):
 
 
 
-@login_required(login_url='accounts/login')
-def search_results(request):
-    if 'image' in request.GET and request.GET['image']:
-        serch_term = request.GRT.get('image')
-        searched_pic = Post.search_image(search_term)
-        massage = f'{search_term}'
+# @login_required(login_url='accounts/login')
+# def search_results(request):
+#     if 'image' in request.GET and request.GET['image']:
+#         serch_term = request.GRT.get('image')
+#         searched_pic = Post.search_image(search_term)
+#         massage = f'{search_term}'
 
-        return render(request,'search.html', {'massage':massage,'image':searched_pics})
+#         return render(request,'search.html', {'massage':massage,'image':searched_pics})
 
-    else:
-        message = "You have not entere anything to search" 
-        return render(request, 'search.html',{'message':message})   
+#     else:
+#         message = "You have not entere anything to search" 
+#         return render(request, 'search.html',{'message':message})   
 
 
 
