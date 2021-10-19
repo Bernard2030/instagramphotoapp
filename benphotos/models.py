@@ -54,6 +54,11 @@ class Image(models.Model):
     def get_image_by_id(cls,id):
         image_result = cls.objects.get(id=id)
         return image_result
+
+    @classmethod
+    def search_category(cls,search):
+        searches = cls.objects.filter(owner__username__icontains = search)
+        return searches    
      
     def __str__(self):
         return self.image_name  

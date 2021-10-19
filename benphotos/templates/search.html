@@ -2,23 +2,26 @@
 {% block content %}
 {{ block.super}}
 
-<div style="margin-top:50px"class="container">
-    <div class="col-md-2"></div>
-    <div style="background-color: white;padding:20px"class="col-md-8">
-        {% if users %}
-        <h3>Found  users matching the name</h3>
-        {% for user in users %}
-        
-        <p><img class="post-search"  src="{{user.profile.profile_pic.url}}" class="img-responsive" alt="Image" width="100" height="100vh">
-        <strong>{{user.username}}</strong></p>
-       
-        <hr>
-        {% endfor %}
-        
-        {% else %}
-    <p> Did not find usernames matching the name </p>
-        {% endif %}
-    </div>   
-    <div class="col-md-2"></div>
-</div>
-{% endblock %}
+
+<div class="container">
+    {% if categories %}
+
+    {% for post in categories %}
+      <div class="col-md-6 col-lg-3 col-12 col-sm-12">
+          <div class="row m-1 mb-3">
+              <div class="card  ">
+                  <img  class="image-thumbnail img-fluid mt-3" src="{{post.image.url}}" alt="Card image cap">
+                  <h5 class="centered">{{post.author}}</h5>
+                  <div class="card-body">
+                      <p class="card-text"> {{post.caption}}</p>
+                  </div>
+                </div>
+          </div>
+      </div>
+      {% endfor %}
+      {%endif%}
+    
+    </div>
+  
+
+{%endblock%}

@@ -36,7 +36,7 @@ def profile(request,id):
             profile = Profile.objects.get(user_id=id)
         except ObjectDoesNotExist:
             
-            return redirect(no_profile,id)      
+            return redirect(nil_profile,id)      
             
     return render(request,'profile/profile.html',{'user':user,'profile':profile,'images':images,'current_user':current_user})   
 
@@ -56,7 +56,7 @@ def update_profile(request,id):
         form = UpdateProfileForm()
     return render(request,'profile/update_profile.html',{'user':user,'form':form})      
 
-def no_profile(request,id):
+def nil_profile(request,id):
     
     user = User.objects.get(id=id)
     return render(request,'profile/nill_profile.html',{"user":user}) 
@@ -90,7 +90,7 @@ def new_image(request,id):
         if form.is_valid():
             image = form.save(commit=False)
             image.owner = current_user
-            # image.profile = current_profile
+            
             image.save()
         return redirect(home)
     else:
@@ -124,7 +124,7 @@ def comment(request,c_id):
         
     return render(request,'comments.html',{"form":form,'comments':comments,"image":current_image,"user":current_user,'like':like,"likes":likes})   
 
-def like_pic(request, pic_id):
+def like(request, pic_id):
     current_user = request.user
     
     image = Image.objects.get(id=pic_id)
@@ -148,10 +148,22 @@ def update_image(request,id):
         if form.is_valid():
             image = form.save(commit=False)
             image.owner = current_user
-            # image.update_image(current,new)
+            
             return redirect(home)
     else:
         form = UpdateImage()
 
     return render(request,'update_image.html',{'user':current_user,'form':form,"image":image})
+
+
+
+def search_results(request):
+    if 'owner' in request.GET and request.GET["owner"]:
+        search_term = request.GET.get("owner")
+        searched_articles = Image.search_category(search_term)
+        message = f"{search_term}"
+        return render(request, 'search.html',{"message":message,"categories": searched_articles})
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message})    
 
