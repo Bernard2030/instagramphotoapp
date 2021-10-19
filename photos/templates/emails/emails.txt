@@ -1,3 +1,0 @@
-Hello {{name}}
-
-Welcome to InstagramPhotos where you can see alot of amazing photos from from your sorrounding and far.

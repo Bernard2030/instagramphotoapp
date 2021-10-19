@@ -1,0 +1,30 @@
+
+{{form.media}}
+{% load bootstrap4 %} {% load static %}
+{% block styles %} {% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}"> {% endblock %}
+<div class="container">
+    
+    <div class="row">
+        <div class="card-group">
+            <form style="background-color: white" action="{%url 'update_image' image.id%}" method="post"
+            enctype="multipart/form-data">
+            {%csrf_token%}
+
+            {% bootstrap_form form%}
+            <input type="submit" class="btn btn-primary" value="Change">
+        </form>
+        {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        {% bootstrap_javascript %} {% endblock %}
+            <div class="card">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+                <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
