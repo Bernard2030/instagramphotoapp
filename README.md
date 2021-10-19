@@ -47,12 +47,9 @@ user story
 * Like a picture and leave a comment on it.
 
 ## pictorial Discription
-<img src="image/image1.png" alt="landing"/>
-<img src="image/image2.png" alt="landing"/>
-<img src="image/image3.png" alt="landing"/>
-<img src="image/image4.png" alt="landing"/>
-<img src="image/image5.png" alt="landing"/>
-	
+<img src="image/start.png" alt="landing"/>
+<img src="image/comments.png" alt="landing"/>
+
 	
 	
 	
