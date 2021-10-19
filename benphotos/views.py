@@ -80,17 +80,17 @@ def search_results(request):
 @login_required(login_url='/accounts/login/')
 def new_image(request,id):
     current_user = request.user
-    try:
-        current_profile = Profile.objects.get(user_id=id)
-    except ObjectDoesNotExist:
-        return redirect(update_profile,current_user.id)
+    # try:
+    #     current_profile = Profile.objects.get(user_id=id)
+    # except ObjectDoesNotExist:
+    #     return redirect(update_profile,current_user.id)
         
     if request.method == 'POST':
         form = PostImage(request.POST, request.FILES)
         if form.is_valid():
             image = form.save(commit=False)
             image.owner = current_user
-            image.profile = current_profile
+            # image.profile = current_profile
             image.save()
         return redirect(home)
     else:
