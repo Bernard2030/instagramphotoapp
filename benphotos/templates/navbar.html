@@ -34,6 +34,18 @@
             <li>
               <a href="/logout">Logout</a>
             </li>
+            <div class="col-md-4">
+              <ul style="padding-right: 15px;" class="nav navbar-nav navbar-right">
+              <li>
+                  <a style="font-size:18px;color:black;" 
+                  href="{% url 'new_image' user.id %}">Upload</a>
+              </li>
+              <li>
+                  <a style="font-size:18px;color:black" 
+                  href="{% url 'profile' user.id %}">Profile</a>
+              </li>
+            
+          </div>
           </ul>
         </li>
       </ul>
