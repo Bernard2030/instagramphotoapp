@@ -10,7 +10,7 @@ from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 
 
-# @login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def home(request):
     images = Image.objects.all().order_by('-post_date')
     users = User.objects.all()  
@@ -59,7 +59,7 @@ def update_profile(request,id):
 def no_profile(request,id):
     
     user = User.objects.get(id=id)
-    return render(request,'profile/no_profile.html',{"user":user}) 
+    return render(request,'profile/nill_profile.html',{"user":user}) 
 
 def search_results(request):
     profile = Profile.objects.all
@@ -96,7 +96,7 @@ def new_image(request,id):
     else:
         form = PostImage()
         
-    return render(request, 'new_image.html', {'user':current_user,"form": form})
+    return render(request, 'image_new.html', {'user':current_user,"form": form})
 
 @login_required(login_url='/accounts/login/')   
 def comment(request,c_id):
