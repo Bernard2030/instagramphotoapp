@@ -10,7 +10,8 @@
 {% load bootstrap4 %} {% load static %}
 {% block styles %} {% bootstrap_css %}
 <link rel="stylesheet" href="{% static 'css/styles.css' %}"> 
-<link href="https://fonts.googleapis.com/css?family=Aguafina+Script|Dancing+Script|Lobster|Niconne|Pacifico|Righteous|Satisfy&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
 {% endblock %}
 
 
@@ -31,7 +32,7 @@
         {% if like %}
         <p>You liked the image</p>
         {% else %}
-        <a href="like/{{image.id}}"><span class='glyphicon glyphicon-thumbs-up'style="font-size:25px"></span></a>
+        <a href="like/{{image.id}}"><i class="fas fa-heart"></i></a>
         {% endif %}
         <form style="border:white"action="/comment/{{image.id}}" method="post" enctype="multipart/form-data">
         {%csrf_token%}

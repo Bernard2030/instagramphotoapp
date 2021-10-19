@@ -1,3 +1,6 @@
+{%extends 'base.html'%}
+{% block content %} 
+{{ block.super}}
 <div class="container "id="con">
     <br>
     <div class="col-md-2 col-sm-1 "></div>
@@ -19,8 +22,8 @@
         <img style="margin:0px;" src="{{image.image.url}}" class="img-responsive" alt="Image"><br>
         <p><strong>@{{image.owner}}</strong> {{image.caption}}</p>
 
-    <p class="foot"><a href="/comment/{{image.id}}"><span class="glyphicon glyphicon-heart"></span></a>   
-        0<a style="text-decoration:none;"href="/comment/{{image.id}}"><span style="margin-left:5px;" class="glyphicon glyphicon-comment"></span></a></p>
+    <p class="foot"><a href="/comment/{{image.id}}"><i class="fas fa-heart"></i></a>   
+        0<a style="text-decoration:none;"href="/comment/{{image.id}}"><i class="fas fa-comment-dots"></i></a></p>
         </div>
     <br>
         {% endfor %}
@@ -28,3 +31,4 @@
     <di class="col-md- col-sm-1"></di>
     </div>
 </div>
+{% endblock %}
